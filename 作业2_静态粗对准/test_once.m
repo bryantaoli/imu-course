@@ -28,13 +28,18 @@ vb=cross(rb,we2i2b);
 
 Cn2b=[rb,we2i2b,vb]*inv([rn,we2i2n,vn]);
 Cb2n=Cn2b';
+Cb2n*Cb2n'
+qb2n=DCMToQuater(Cb2n);
+qb2n_norm=NormQuater(qb2n);
+Cb2n=QuaterToDCM(qb2n_norm);
+Cb2n
 %Cb2n=[rn,we2i2n,vn]*inv([rb,we2i2b,vb]);
+
 alpha_rad=atan2(Cb2n(2,1),Cb2n(1,1));
 alpha_deg=alpha_rad*180/pi;
-alpha_deg
+
 theta_rad=atan2(-Cb2n(3,1),sqrt(Cb2n(3,2)^2+Cb2n(3,3)^2));
 theta_deg=theta_rad*180/pi;
-theta_deg
+
 phi_rad=atan2(Cb2n(3,2),Cb2n(3,3));
 phi_deg=phi_rad*180/pi;
-phi_deg
